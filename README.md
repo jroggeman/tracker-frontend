@@ -2,6 +2,12 @@
 
 Frontend app for tracker api
 
+## Requirements
+- npm
+  - Install nvm
+    - `nvm curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash`
+  - `nvm install node` (or specific version)
+
 ## Install the dependencies
 ```bash
 yarn
