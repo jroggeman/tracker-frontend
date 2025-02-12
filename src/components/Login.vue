@@ -1,12 +1,20 @@
 <template>
-    <h2>Login</h2>
-    <form>
-        <label for="email">Email</label>
-        <input type="text" name="email" placeholder="john.smith@email.fake">
+    <div class="container">
+      <h2>Login</h2>
+      <form>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="text" class="form-control" name="email" placeholder="john.smith@email.fake">
+        </div>
 
-        <label for="password">Password</label>
-        <input type="password" name="password" />
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" name="password" />
+        </div>
 
-        <input type="submit" value="Log In" />
-    </form>
+        <div class="mb-3">
+          <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+      </form>
+    </div>
 </template>

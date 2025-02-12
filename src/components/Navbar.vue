@@ -18,6 +18,9 @@
           <li class="nav-item">
             <RouterLink class="nav-link" active-class="active" to="/login">Login</RouterLink>
           </li>
+          <li class="nav-item">
+            <RouterLink class="nav-link" active-class="active" to="/metricDefinitions">Metric Defs</RouterLink>
+          </li>
         </ul>
       </div>
     </div>
