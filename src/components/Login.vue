@@ -1,11 +1,35 @@
 <script setup>
 import { ref } from 'vue'
+import { defineStore, storeToRefs } from 'pinia'
 
 const email = ref('')
 const pass = ref('')
 
-const dummy = ref('')
 const error = ref('')
+
+// TODO Maybe should be a setup store - a bit cleaner looking
+// than the magic syntax
+const useTokenStore = defineStore('tokens', {
+    state: () => ({ tokenValue: '', loggedIn: false}),
+    getters: {
+        isLoggedIn: (s) => s.loggedIn,
+        token: (s) => s.tokenValue,
+    },
+    actions: {
+        logInWithToken(t) {
+            this.tokenValue = t;
+            this.loggedIn = true;
+        },
+        logOut() {
+            this.tokenValue = '';
+            this.loggedIn = false;
+        }
+    }
+});
+
+const store = useTokenStore();
+
+const { tokenValue } = storeToRefs(store);
 
 function doLogin() {
     const requestOptions = {
@@ -25,7 +49,7 @@ function doLogin() {
                 return Promise.reject(error);
             }
 
-            dummy.value = JSON.stringify(data.token);
+            store.tokenValue = data.token;
         })
         .catch(err => {
             error.value = err;
@@ -52,8 +76,6 @@ function doLogin() {
         </div>
       </form>
 
-      Email is {{ email }}, pass is {{ pass }}
-
-      Dummy is {{ dummy }}, error is {{ error }}
+      Token is {{ tokenValue }}, error is {{ error }}
     </div>
 </template>
