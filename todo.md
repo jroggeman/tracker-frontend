@@ -9,3 +9,8 @@
 - [ ] Cleaner way of constructing API urls - API client?
 - [ ] More composables refactoring with slots and events and such
 - [ ] Consider TanStack Query & composables vs Pinia for state management
+- [ ] JS Module learning and import management
+- [ ] Bootstrap icons
+
+## Links
+
