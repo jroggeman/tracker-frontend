@@ -1,31 +1,12 @@
 <script setup>
 import { ref } from 'vue'
 import { defineStore, storeToRefs } from 'pinia'
+import { useTokenStore } from '../stores/token.store.js'
 
 const email = ref('')
 const pass = ref('')
 
 const error = ref('')
-
-// TODO Maybe should be a setup store - a bit cleaner looking
-// than the magic syntax
-const useTokenStore = defineStore('tokens', {
-    state: () => ({ tokenValue: '', loggedIn: false}),
-    getters: {
-        isLoggedIn: (s) => s.loggedIn,
-        token: (s) => s.tokenValue,
-    },
-    actions: {
-        logInWithToken(t) {
-            this.tokenValue = t;
-            this.loggedIn = true;
-        },
-        logOut() {
-            this.tokenValue = '';
-            this.loggedIn = false;
-        }
-    }
-});
 
 const store = useTokenStore();
 
@@ -46,7 +27,7 @@ function doLogin() {
 
             if (!res.ok) {
                 const err = (data && data.message) || res.statusText;
-                return Promise.reject(error);
+                return Promise.reject(err);
             }
 
             store.tokenValue = data.token;
