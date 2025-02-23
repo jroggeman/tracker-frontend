@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import MetricDefinitionView from '../views/MetricDefinitionView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +27,13 @@ const router = createRouter({
       path: '/metricDefinitions',
       name: 'metricDefinitions',
       component: () => import('../views/MetricDefinitionsView.vue'),
+      children: [
+        {
+          path: ':id',
+          name: 'MetricDefinitionView',
+          component: MetricDefinitionView
+        }
+      ]
     }
   ],
 })

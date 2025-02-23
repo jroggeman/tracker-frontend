@@ -35,7 +35,8 @@ function addMetric() {
       }
 
       metricDefs.value.push({
-        name: data.name
+        name: data.name,
+        id: data.id
       });
 
       closeModal();
@@ -97,12 +98,13 @@ onMounted(() => {
       <div class="col-3">
         <button type="button" class="btn btn-primary mb-2" @click="showModal" >Add Metric</button>
         <div class="list-group">
-          <a v-for="metric in metricDefs" href="#" class="list-group-item list-group-item-action">
+           <RouterLink v-for="metric in metricDefs" class="list-group-item list-group-item-action" :to="{name: 'MetricDefinitionView', params: { id: metric.id } }">
             {{ metric.name }}
-          </a>
+          </RouterLink>
         </div>
       </div>
       <div class="col-9">
+        <router-view />
       </div>
     </div>
 
